@@ -20,7 +20,7 @@ def signup():
                     well = ''
         return bottle.template(template.read(), okOrNot = well, no_content = no_content)
 
-@bottle.get("/confirm")
+@bottle.post("/confirm")
 def confirm():
     with open('done.html') as template:
         username23 = bottle.request.forms.get('email', None)
