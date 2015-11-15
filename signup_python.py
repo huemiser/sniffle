@@ -18,24 +18,18 @@ def signup():
                     well = "password doesn't match"
                 else:
                     well = ''
-                    with open('done.html') as template:
-                        goto = bottle.request.forms.get('gotomain')
-                        kindof = ''
-                        if goto:
-                            kindof = type(goto)
-                        return bottle.template(template.read(), usrn = "username: ", realusrn = email, passw = "password: ",
-                            realpassw = password2, type = kindof)
-
-
         return bottle.template(template.read(), okOrNot = well, no_content = no_content)
 
-@bottle.get('/test')
-def test2():
-    see = 'look'
-@bottle.get('/test2')
-def test():
+@bottle.get("/confirm")
+def confirm():
+    with open('done.html') as template:
+        username23 = bottle.request.forms.get('email', None)
+        pass23 = bottle.request.forms.get('password2', None)
+        if username23 and pass23:
+            return bottle.template(template.read(), usrn = "username: ", realusrn = username23, passw = "password: ", realpassw = pass23)
+        else:
+            return "something went wrong"
 
-    return see
 
 @bottle.get("/static/<filename:path>")
 def static_file(filename):
